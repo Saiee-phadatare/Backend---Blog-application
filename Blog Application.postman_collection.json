@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "3a5ce7e0-f0df-4cab-848b-2b4e62690602",
+		"name": "Blog Application",
+		"description": "This collection contains the RESTful APIs for a **Blog Application** built using **Node.js, Express.js, and MongoDB**.\n\nThe application provides:\n\n- **User Management**: Registration, login, logout, authentication, and profile management.\n    \n- **Blog Management**: Create, read, update, and delete posts with ownership-based access control.\n    \n- **Engagement Features**: Like, comment, and save posts.\n    \n- **Security**: JWT authentication, role-based access control (RBAC), CORS, Helmet, and input validation.\n    \n- **Media Handling**: Image upload and storage with Cloudinary.\n    \n\n**Tech Stack**:\n\n- **Backend**: Node.js, Express.js\n    \n- **Database**: MongoDB (local & Atlas)\n    \n- **Authentication**: JWT, bcrypt\n    \n- **File Storage**: Cloudinary\n    \n- **Security**: Helmet, CORS, Rate Limiting.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41984587"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Saiee Sanjay Phadatare\",\r\n    \"email\" : \"ssp.phadatare@gmail.com\",\r\n    \"password\" : \"saiee@68\",\r\n    \"profilePic\" :\"null\",\r\n    \"gender\" : \"Female\",\r\n    \"bio\" : \"Hi...hellow world\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"ssp.phadatare@gmail.com\",\r\n    \"password\" : \"saiee@68\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgzMzU5MzhlYmEwMzhhZjhmZGJmMmIiLCJlbWFpbCI6InNzcC5zYWllZUBnbWFpbC5jb20iLCJpYXQiOjE3NTM0Mjk0MDh9.ZVQMfRw0hd03ONBGuR7-uUXj-P30mvZQRZLU_hynZvI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Saiee\",\r\n    \"profilePic\" : \"\",\r\n    \"bio\" : \"My name is saiee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/update/688335938eba038af8fdbf2b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"update",
+								"688335938eba038af8fdbf2b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODdlMDQ2MDNhNTc4YzdjOWJmM2MyNjQiLCJlbWFpbCI6InNzcC5zYWllZUBnbWFpbC5jb20iLCJpYXQiOjE3NTM0MjgyNzJ9.RPT82wjQw1FqT7FYqZamRVytYhBixV_dnnqb4XZuSrE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/auth/delete/687e04603a578c7c9bf3c264",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"delete",
+								"687e04603a578c7c9bf3c264"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"ssp.phadatare@gmail.com\",\r\n    \"password\" : \"saiee@68\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookmarks post",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Handles all user-related operations:\n\n- **Authentication**: Register, login, logout\n    \n- **Profile Management**: Get profile, update profile\n    \n- **Authorization**: Role-based access for specific actions\n    \n\n_Example Use:_\n\nA new user signs up, logs in, and updates their profile picture."
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Create blog",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgxZWJhMWEzMDU1MDhlYTBjZGUwMjUiLCJlbWFpbCI6InNzcC5hYmNkZWZAZ21haWwuY29tIiwiaWF0IjoxNzUzMzQ0OTUxfQ.NWXuAlDgKorD6A7732HMtqv0uaLiIRFCsAreccVzhvA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"phadatare post\",\r\n    \"content\" : \"its a tech post would you like to join\",\r\n    \"category\": \"Tech\",\r\n    \"postImage\": \"null\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/post/create/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/post/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single blog",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "all blog of single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/post/userpost/688348126daee07a8324e71c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"userpost",
+								"688348126daee07a8324e71c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/post/search?title=phadatare post&category=&author",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"search"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "phadatare post"
+								},
+								{
+									"key": "category",
+									"value": ""
+								},
+								{
+									"key": "author",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update blog",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODdlMDQ2MDNhNTc4YzdjOWJmM2MyNjQiLCJlbWFpbCI6InNzcC5zYWllZUBnbWFpbC5jb20iLCJpYXQiOjE3NTMzNDgyNzF9.N6gcgyGk1VNAqdzELfQbkCh5kctXZMEiLnTFEr3DHzs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"My blog\",\r\n    \"content\" : \"Hi my name is abcdef and i am try to create an blog aplication in mern stack, would you like to help me?\",\r\n    \"postImage\" : \"soon in cloudnary\",\r\n    \"category\" : \"Music\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/post/update/6881ed2aa305508ea0cde029",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"update",
+								"6881ed2aa305508ea0cde029"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete blog",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODgzNDgxMjZkYWVlMDdhODMyNGU3MWMiLCJlbWFpbCI6InNzcC5waGFkYXRhcmVAZ21haWwuY29tIiwiaWF0IjoxNzUzNDM0MTUxfQ.S37-CzIX5hqW7qWnsgiFXOBEHoKMCg_6s7sXTo6M4M8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/post/delete/6881ed2aa305508ea0cde029",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"delete",
+								"6881ed2aa305508ea0cde029"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "likes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Likescount",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "Manages blog posts and related activities:\n\n- **Create / Update / Delete Post**\n    \n- **Fetch Posts (single & multiple)**\n    \n- **Like, Comment, and Save Posts**\n    \n- **Ownership-based access control** (only authors can edit/delete their posts)\n    \n\n_Example Use:_ A user creates a blog post, adds a comment, and likes another user’s post."
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/post/68a81d455f4bd977dafea663/comments/68baa96a3990d3c043425406",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"68a81d455f4bd977dafea663",
+								"comments",
+								"68baa96a3990d3c043425406"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AI",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\" : \"Why coding??\",\r\n    \"type\": \"suggestion\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ai",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ai"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
